@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/main/header :: header">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>CODELESS - 자주묻는질문 내용</title>
+</head>
+<script th:inline="javascript">
+    function deletePost(faq_id) {
+        alert(faq_id);
+
+        let input = document.createElement('input');
+        let form = document.createElement('form');
+
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('value', faq_id);
+        input.setAttribute('name', 'faq_id');
+        form.appendChild(input);
+
+
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/faq/deleteFaq');
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
+<body>
+<!--네비게이숀-->
+<div th:insert="/main/navy :: nav"></div>
+<!--네비게이숀-->
+
+<div class="row" style="margin-left: 100px;">
+    <!-- 사이드바 -->
+    <div th:insert="/main/noSide :: mySide"></div>
+    <!-- 사이드바 -->
+
+    <div class="col-md-10">
+        <div id="right" style="width: 80%">
+            <h1 style="font-family: 'TheJamsil5Bold'; font-size:25px ;">[[${content.title }]]</h1>
+            <hr style="border: 0;height: 3px; background-color: black;">
+
+            페이지번호
+            <table class="table" id="nttable">
+                <tr>
+                    <th style="width:94px; text-align: center;">FAQ번호</th>
+                    <td>[[${content.faq_id }]]</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">카테고리</td>
+                    <td>[[${content.category }]]</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">제목</td>
+                    <td>[[${content.title }]]</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">내용</td>
+                    <td style="white-space:pre-line; word-break:break-all;">[[${content.content }]]</td>
+                </tr>
+            </table>
+
+            <div style= "float: right; margin-top: 80px;">
+
+                    <a th:href="@{/faq/modifyFaq(faq_id=${content.faq_id })}" class="btn btn-primary">게시글 수정</a>
+<!--                    <a th:href="@{/faq/deleteFaq(faq_id=${content.faq_id })}" class="btn btn-primary">게시글 삭제</a>-->
+                    <a class="btn btn-primary" th:onclick="deletePost([[${content.faq_id}]])" >게시글 삭제</a>
+                <a th:href="|/faq/faqList|" class="btn btn-secondary">목록으로</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--푸터-->
+<div th:insert="/main/footer :: footer"></div>
+<!--푸터-->
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/main/header :: header">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!--navigator-->
+<div th:insert="/main/navy :: nav"></div>
+<!--navigator-->
+
+<div class=row style="margin-left: 100px;">
+
+<!--  sidebar-->
+<div th:insert="/main/noSide :: mySide"></div>
+<!--  sidebar-->
+
+  <div class="col-md-10">
+    <div id="right" style="width: 80%">
+      <h1 style="font-family: 'TheJamsil5Bold';">1:1문의 질문목록</h1>
+      <hr style="border: 0;height: 3px; background-color: black;">
+
+
+      <table class="table" id="nttable">
+        <thead style="background-color: #F6F6F6;">
+        <tr>
+          <th>작성일</th>
+          <th style="text-align: center;">제목</th>
+          <th>작성자</th>
+          <th>처리상태</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+          <tr th:each="dto : ${qnaList}" >
+            <td width="200px;">[[${dto.regdate}]]<input type="hidden" name="regdate" th:value="${dto.regdate}"></td>
+            <td width="500px;" style="text-align: center;">
+                <img src="/qna/re.png" width="30" height="30" th:if="${dto.re_Lev > 0}">
+              <a th:href="|/qna/readQna?bno=${dto.bno }|">[[${dto.title }]]</a></td>
+            <td width="100px;">[[${dto.nickname}]]</td>
+            <td>
+              <th:block th:if="${dto.re_Lev < 1}">
+                <span th:if="${dto.isAnswered}" style="color: green;">답변완료</span>
+                <span th:unless="${dto.isAnswered}" style="color: red;">답변대기</span>
+              </th:block>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--  paging action-->
+<!--    <div class="container" style="margin: auto;">-->
+<!--      <ul class="pagination justify-content-center" id="pagination" style="margin-top: 20px;">-->
+<!--          <li class="page-item" th:if="${startPage > pageBlock}">-->
+<!--            <a class="page-link" href="./AdminQNAList.qn?pageNum=${startPage-pageBlock} "><sapn>이전</sapn></a>-->
+<!--          </li>-->
+<!--        <div th:each="i : ${#numbers.sequence(startPage, endPage)}">-->
+<!--          <li class="page-item">-->
+<!--            <a class="page-link" th:href="@{|/qnaList?pageNum=${i}}|"><span th:text="${i}"></span></a>-->
+<!--          </li>-->
+<!--        </div>-->
+<!--          <li class="page-item" th:if="${endPage < pageCount}">-->
+<!--            <a class="page-link" href="./AdminQNAList.qn?pageNum=${startPage+pageBlock} "><span>다음</span></a>-->
+<!--          </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+  <!--  paging action-->
+
+</div>
+<br>
+<!--footer-->
+<div th:insert="/main/footer :: footer"></div>
+<!--footer-->
+</body>
+</html>

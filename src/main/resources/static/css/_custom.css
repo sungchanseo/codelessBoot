@@ -1,0 +1,215 @@
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+@font-face {
+     font-family: 'Noto Sans KR', sans-serif;
+    src: url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+}
+
+@font-face {
+    font-family: 'TheJamsil5';
+    src: url('The Jamsil OTF 3 Regular.otf') format('woff2');
+}
+
+  @media (max-width: 991.98px) {
+    .ftco-navbar-light {
+      background: #000000 !important;
+      position: relative;
+      top: 0; } }
+  .ftco-navbar-light .navbar-brand {
+    color: #fff; }
+    .ftco-navbar-light .navbar-brand span {
+      color: #dfaa93; }
+    @media (max-width: 991.98px) {
+      .ftco-navbar-light .navbar-brand {
+        color: #fff; } }
+  @media (max-width: 991.98px) {
+    .ftco-navbar-light .navbar-nav {
+      padding-bottom: 10px; } }
+      @media screen and (max-width: 2000px) {
+  body {
+    overflow-x: hidden; 
+  }
+}
+ .navbar-brand {
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase; }
+  
+  #login-con {
+	margin: auto; margin-top: 250px; margin-bottom: 100px; border: 1px solid #C0C0C0; width:500px;
+	border-radius: 5px; font-family: 'RIDIBatang';
+	box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+  #log-form {
+  
+  width: 400px;
+  margin: auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  }
+  #password{
+   margin-top: 10px;
+  }
+  
+  #log-form span{
+  padding: 10px 10px;
+  color: gray;
+  }
+  
+  .form-group h2{
+  font-family:'TheJamsil5Bold';
+  font-weight: 200;
+  }
+  option {
+  	color:  black;
+  }
+  .table a{
+  	color: black;
+    text-decoration: none;
+  }
+  .table tr{
+  	height: 50px;
+  	
+  }
+  
+  #pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  column-gap: 2px;
+}
+
+  #pagination span {
+  color: black;;
+}
+  #left{
+   /*  position: absolute; */
+    width: 230px;
+    height: 600px;
+    margin-top: 150px;
+    background: rgb(51, 56, 62);
+    border-radius: 15px 0 0 15px;
+    box-shadow: -20px 20px 20px rgba(0, 0, 0, 0.3);
+  /*   margin-left: 120px; */
+	}
+  #right { 
+   background: #fff;
+  /* padding: 30px; */
+/*   -webkit-box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2); */
+   width: 100%; 
+	 margin-left:80px;  
+	width:900px;
+	height:700px;
+	margin-top: 130px;
+	margin-bottom: 150px; 
+	font-family: 'TheJamsil5';
+	 }
+  #left h4 {
+    font-family:'TheJamsil5Bold';
+	color: white;
+}	  
+  
+  #left h5{
+	font-family:'TheJamsil5';
+	color: white;
+}	 
+  #left h5{
+		cursor: pointer;
+}
+
+ .navbar.shadow {
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.nav-link {
+	font-family:'TheJamsil5Bold';
+    color: white; /* 바꾸고 싶은 색상으로 변경해주세요 */
+}
+.navbar-brand{
+	
+	  font-family: "Roboto", arial, sans-serif;
+}
+.image-with-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-with-text img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-with-text h2 {
+	font-family:'TheJamsil5';
+	margin-top: 30px;
+}
+
+.mainModal {
+  display: none; /* 초기에는 숨김 상태 */
+  position: fixed; /* 페이지 내 스크롤에 영향을 받지 않도록 고정 위치 */
+  z-index: 9999; /* 페이지 레이어 맨 위에 위치하도록 큰 값으로 지정 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4); /* 배경색 지정 */
+    opacity: 0.4;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+   backdrop-filter: blur(1rem);
+}
+
+#mainModal .modal-content {
+  width: 1000px; 
+  height: 650px;
+  position: absolute; /* 모달 창 내에서 상대적인 위치 */
+  top: 50%; /* 상위 요소에서 50% 위치 */
+  left: 50%; /* 상위 요소에서 50% 위치 */
+  transform: translate(-50%, -50%); /* 가운데 정렬 */
+  overflow-y: auto;
+  background-image: url(https://cdn.pixabay.com/animation/2023/03/19/02/34/02-34-11-741_512.gif);
+  padding: 10px;
+  border-radius: 8px;
+  border: 4px solid;
+  border-color:#ffba5a;
+  box-shadow: 0 0 100px rgba(0,0,0,0.3);
+  backdrop-filter: blur(1rem);
+ 
+}
+
+#mainModal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.col-md-6 p{
+	color: #322F2C;
+	font-size: 20px;
+	margin: 2px;
+}
+
+.dropdown-menu a{
+	color: black;
+}
+ .navbar-toggler.active {
+        color: red !important; /* Change the text color to red when the button is toggled */
+    }
+#matbutton{
+	cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🔎</text></svg>") 16 0, auto;
+}

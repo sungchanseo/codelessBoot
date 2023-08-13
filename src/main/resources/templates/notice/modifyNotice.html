@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/main/header :: header">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>CODELESS - 공지사항 수정</title>
+</head>
+<body>
+
+<!--navigator-->
+<div th:insert="/main/navy :: nav"></div>
+<!--navigator-->
+
+<div class="row" style="margin-left: 100px;">
+    <!-- 사이드바 -->
+    <div th:insert="/main/noSide :: mySide"></div>
+    <!--   사이드바 -->
+
+    <div class="col-md-10">
+        <div id="right" style="width: 80%">
+            <h1 style="font-family: 'TheJamsil5Bold';">공 지 수 정</h1>
+            <hr style="border: 0;height: 3px; background-color: black;">
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+                글번호 [[${content.notice_id }]] 페이지번호 ${pageNum }
+                <input type="hidden" name="notice_id" th:value="${content.notice_id }">
+                <input type="hidden" name="pageNum" th:value="pageNum">
+                <br>
+                <label style="width:100%;">글제목<br>
+                    <input type="text" name="title" th:value="${content.title }" class="form-control" maxlength="40">
+                </label>
+                <br>
+                <label style="width:100%;">글 내용<br>
+                    <textarea name="content"  cols="110px;" rows="10px;" class="form-control" maxlength="400">[[${content.content }]]</textarea>
+                </label>
+                <br>
+                <label>첨부 이미지 (이미지 파일만 업로드 가능합니다)
+                    <input type="file" name="notice_image" class="form-control" accept="image/*">
+                </label>
+                <br>
+
+                <div style= "float: right;">
+                    <input type="submit" value="수정완료" class="btn btn-primary">
+                    <a th:href="|/notice/noticeList|" class="btn btn-secondary">목록으로</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--footer-->
+<div th:insert="/main/footer :: footer"></div>
+<!--footer-->
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/main/header :: header">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <meta charset="UTF-8">
+  <title>CODE LESS - 공지사항</title>
+</head>
+<body>
+<div th:insert="/main/navy :: nav"></div>
+
+<div class="row" style="margin-left: 100px;">
+
+  <!-- 사이드바 -->
+<div th:insert="/main/noSide :: mySide"></div>
+  <!--   사이드바 -->
+
+  <div class="col-md-8">
+    <div id="right">
+      <h1 style="font-family: 'TheJamsil5Bold';">공 지 사 항</h1>
+      <hr style="border: 0;height: 3px; background-color: black;">
+
+      페이지번호 : <br>
+      <table class="table" id="nttable">
+        <thead style="background-color: #F6F6F6;">
+        <tr>
+          <th style="text-align: center;">NO.</th>
+          <th style="text-align: center;">제목</th>
+          <th style="text-align: center;">게시일</th>
+          <th style="text-align: center;">조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dto : ${noticeList}">
+          <td width="30px;" style="text-align: center;"><input type="hidden" name="notice_id" th:value="${dto.notice_id}"></td>
+          <td width="500px;" style="text-align: center;"><a th:href="|/notice/readNotice?notice_id=${dto.notice_id}|" th:text="${dto.title}"></a></td>
+          <td width="200px;" style="text-align: center;" th:text="${dto.date}"></td>
+          <td width="100px;" style="text-align: center;" th:text="${dto.count}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- 검색창기능 -->
+      <div class="table" id="nttable">
+        <form action="/notice/noticeList" method="post">
+          <select name="category" class="form-control" style="width:120px; display:inline;">
+            <option value="title">제목</option>
+            <option value="content">내용</option>
+          </select>
+          <input type="text" name="search" class="form-control" style="width:30%; display:inline;" placeholder="검색어를 입력해주세요">
+          <input type="image" src="/images/magnifying-glass-g1d4816a37_640.png" width="35px" style="vertical-align:middle; display:inline;">
+        </form>
+      </div>
+      <!-- 검색창기능 -->
+
+<!--      <div class="container">-->
+<!--        <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">-->
+<!--          &lt;!&ndash; 이전 페이지 링크 &ndash;&gt;-->
+<!--          <li class="page-item" th:if="${startPage > pageBlock}">-->
+<!--            <a class="page-link" th:href="'/notice/noticeList?pageNum=' + (${startPage - pageBlock}) + '&amp;category=' + ${category} + '&amp;search=' + ${search}">-->
+<!--              <span>이전</span>-->
+<!--            </a>-->
+<!--          </li>-->
+
+<!--          &lt;!&ndash; 페이지 순환 루프 &ndash;&gt;-->
+<!--          <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">-->
+<!--            <a class="page-link" th:href="'/notice/noticeList?pageNum=' + ${i} + '&amp;category=' + ${category} + '&amp;search=' + ${search}">-->
+<!--              <span th:text="${i}"></span>-->
+<!--            </a>-->
+<!--          </li>-->
+
+<!--          &lt;!&ndash; 다음 페이지 링크 &ndash;&gt;-->
+<!--          <li class="page-item" th:if="${endPage < pageCount}">-->
+<!--            <a class="page-link" th:href="'/notice/noticeList?pageNum=' + (${startPage + pageBlock}) + '&amp;category=' + ${category} + '&amp;search=' + ${search}">-->
+<!--              <span>다음</span>-->
+<!--            </a>-->
+<!--          </li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+<!--      <br>-->
+<!--      &lt;!&ndash; 변수 설정 &ndash;&gt;-->
+<!--      <div th:with="category=${category}, search=${search}, pageNum=${pageNum}">-->
+<!--        &lt;!&ndash; 나머지 코드 작성 &ndash;&gt;-->
+<!--      </div>-->
+
+      <div style= "float: right;">
+
+        <!-- 관리자인 경우에만 버튼 표시 -->
+<!--        <button type="button" class="btn btn-primary" th:if="${id == 'admin'}" th:onclick="|location.href='/notice/writeNotice'|">글작성</button>-->
+        <button type="button" class="btn btn-primary" onclick="location.href='/notice/writeNotice'">글작성</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='/'">메인으로</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--footer-->
+<div th:insert="/main/footer :: footer"></div>
+<!--footer-->
+</body>
+</html>

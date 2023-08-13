@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="mySide">
+  <div class="col-md-2">
+    <div class="container" id="left">
+      <br>
+      <h4> 공지게시판</h4>
+      <hr style="border: 0;height: 3px; background-color: white;">
+      <ul>
+        <li><h5 onclick="location.href='/notice/noticeList'">공지사항</h5></li>
+        <li><h5 onclick="location.href='/faq/faqList'"> 자주묻는질문</h5></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
