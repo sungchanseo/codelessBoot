@@ -6,15 +6,15 @@
     <title>CODELESS - 자주묻는질문 내용</title>
 </head>
 <script th:inline="javascript">
-    function deletePost(faq_id) {
-        alert(faq_id);
+    function deletePost(faqId) {
+        alert(faqId);
 
         let input = document.createElement('input');
         let form = document.createElement('form');
 
         input.setAttribute('type', 'hidden');
-        input.setAttribute('value', faq_id);
-        input.setAttribute('name', 'faq_id');
+        input.setAttribute('value', faqId);
+        input.setAttribute('name', 'faqId');
         form.appendChild(input);
 
 
@@ -35,16 +35,15 @@
     <div th:insert="/main/noSide :: mySide"></div>
     <!-- 사이드바 -->
 
-    <div class="col-md-10">
-        <div id="right" style="width: 80%">
+    <div class="col-md-8">
+        <div id="right" style="width: 100%">
             <h1 style="font-family: 'TheJamsil5Bold'; font-size:25px ;">[[${content.title }]]</h1>
             <hr style="border: 0;height: 3px; background-color: black;">
 
-            페이지번호
             <table class="table" id="nttable">
                 <tr>
                     <th style="width:94px; text-align: center;">FAQ번호</th>
-                    <td>[[${content.faq_id }]]</td>
+                    <td>[[${content.faqId }]]</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">카테고리</td>
@@ -62,9 +61,9 @@
 
             <div style= "float: right; margin-top: 80px;">
 
-                    <a th:href="@{/faq/modifyFaq(faq_id=${content.faq_id })}" class="btn btn-primary">게시글 수정</a>
-<!--                    <a th:href="@{/faq/deleteFaq(faq_id=${content.faq_id })}" class="btn btn-primary">게시글 삭제</a>-->
-                    <a class="btn btn-primary" th:onclick="deletePost([[${content.faq_id}]])" >게시글 삭제</a>
+                    <a th:href="@{/faq/modifyFaq(faqId=${content.faqId })}" class="btn btn-primary">게시글 수정</a>
+<!--                    <a th:href="@{/faq/deleteFaq(faqId=${content.faqId })}" class="btn btn-primary">게시글 삭제</a>-->
+                    <a class="btn btn-primary" th:onclick="deletePost([[${content.faqId}]])" >게시글 삭제</a>
                 <a th:href="|/faq/faqList|" class="btn btn-secondary">목록으로</a>
             </div>
         </div>

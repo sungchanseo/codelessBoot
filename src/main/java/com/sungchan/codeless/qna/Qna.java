@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter @Setter @ToString
@@ -16,9 +13,12 @@ public class Qna {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer qna_id;
-    private Integer user_iD;
-    private Integer product_id;
+    @Column(name = "qna_id")
+    private Integer qnaId;
+    @Column(name = "user_id")
+    private Integer userID;
+    @Column(name = "product_id")
+    private Integer productId;
     private String qnaCategory;
     private String title;
     private Date regdate;

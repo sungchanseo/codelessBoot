@@ -15,14 +15,14 @@
     <div th:insert="/main/noSide :: mySide"></div>
     <!-- 사이드바 -->
 
-    <div class="col-md-10" style="margin-bottom:40px;">
+    <div class="col-md-8" style="margin-bottom:40px;">
         <div id="right" style="width: 80%">
             <h1 style="font-family: 'TheJamsil5Bold';">[[${content.title }]]</h1>
             <hr style="border: 0;height: 3px; background-color: black;">
 
             <table class="table" id="nttable" style="table-layout:fixed">
                 <tr>
-                    <td style="text-align:center;">NO. [[${content.notice_id }]]</td>
+                    <td style="text-align:center;">NO. [[${content.noticeId }]]</td>
                     <td style="text-align:center;">작성일</td>
                     <td style="text-align:center;">[[${content.date }]]</td>
                     <td style="text-align:center;">조회수</td>
@@ -36,10 +36,10 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;">이미지</td>
-                    <td colspan="4" th:if="${not #strings.isEmpty(content.notice_image)}">
-                        <img th:src="@{/upload/${content.notice_image}}" />
+                    <td colspan="4" th:if="${not #strings.isEmpty(content.noticeImage)}">
+                        <img th:src="@{/upload/${content.noticeImage}}" />
                     </td>
-                    <td colspan="4" th:unless="${not #strings.isEmpty(content.notice_image)}">
+                    <td colspan="4" th:unless="${not #strings.isEmpty(content.noticeImage)}">
                         첨부된 이미지가 없습니다.
                     </td>
                 </tr>
@@ -47,8 +47,8 @@
 
             <div style= "float: right; margin-top: 80px;">
 
-                    <a th:href="|/notice/modifyNotice?notice_id=${content.notice_id }|" class="btn btn-primary">게시글 수정</a>
-                    <a th:href="|/notice/deleteNotice?notice_id=${content.notice_id }|" class="btn btn-primary">게시글 삭제</a>
+                    <a th:href="|/notice/modifyNotice?noticeId=${content.noticeId }|" class="btn btn-primary">게시글 수정</a>
+                    <a th:href="|/notice/deleteNotice?noticeId=${content.noticeId }|" class="btn btn-primary">게시글 삭제</a>
                 <a th:href="|/notice/noticeList|" class="btn btn-secondary">목록으로</a>
             </div>
         </div>

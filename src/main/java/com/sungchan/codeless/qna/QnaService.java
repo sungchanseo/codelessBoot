@@ -20,18 +20,18 @@ public class QnaService{
     }
 
     //qna 글읽기
-    public Qna readQna(Integer qna_id) {
-        return qnaRepository.findById(qna_id).orElse(null);
+    public Qna readQna(Integer qnaId) {
+        return qnaRepository.findById(qnaId).orElse(null);
     }
 
     // qna 글삭제
-    public void removeQna(Integer qna_id) {
-        qnaRepository.deleteById(qna_id);
+    public void removeQna(Integer qnaId) {
+        qnaRepository.deleteById(qnaId);
     }
 
     //qna 글수정
     public Qna updateQna(Qna newQna) {
-        Qna qna = qnaRepository.findById(newQna.getQna_id()).orElse(null);
+        Qna qna = qnaRepository.findById(newQna.getQnaId()).orElse(null);
         if (qna == null) return null;
         return qnaRepository.save(newQna);
     }

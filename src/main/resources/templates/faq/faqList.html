@@ -18,7 +18,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="../css/_custom.css" type="text/css"/>
+<!--  <link rel="stylesheet" href="../css/_custom.css" type="text/css"/>-->
   <meta charset="UTF-8">
   <title>CODE LESS - 자주묻는 질문</title>
 </head>
@@ -28,88 +28,88 @@
 
 
 <div class="row" style="margin-left: 100px;">
-  <!-- 사이드바 -->
-  <div th:insert="/main/noSide :: mySide"></div>
-  <!--   사이드바 -->
+            <!-- 사이드바 -->
+            <div th:insert="/main/noSide :: mySide"></div>
+            <!--   사이드바 -->
 
-  <div class="col-md-10">
-    <div id="right" style="width: 80%">
+  <div class="col-md-8">
+    <div id="right" style="width: 100%">
       <h1 style="font-family: 'TheJamsil5Bold';">자 주 묻 는 질 문</h1>
       <hr style="border: 0;height: 3px; background-color: black;">
 
-      페이지번호 : ${pageNum }<br>
-      <!-- 검색창기능 -->
-      <div id="table_search" class="button" style="margin-bottom:10px;">
-        <form action="/faq/faqList" method="post">
-          <select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
-            <option value="title">제목</option>
-            <option value="content">내용</option>
-          </select>
-          <input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;"  placeholder="검색어를 입력해주세요">
-          <input type="image" src="/images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
-        </form>
-      </div>
-      <!-- 검색창기능 -->
+<!--      페이지번호 :  [[${faqList.getPageable().getPageNumber()}]]-->
+      <br>
+            <!-- 검색창기능 -->
+            <div id="table_search" class="button" style="margin-bottom:10px;">
+              <form action="/faq/faqList" method="post">
+                <select name="selecter" class="form-control" style="height:40px; width:120px; display:inline;" >
+                  <option value="title">제목</option>
+                  <option value="content">내용</option>
+                </select>
+                <input type="text" name="search" class="form-control" style="height:40px; width:30%; display:inline;"  placeholder="검색어를 입력해주세요">
+                <input type="image" src="/images/magnifying-glass-g1d4816a37_640.png" width="25px" style="vertical-align:middle; display:inline;">
+              </form>
+            </div>
+            <!-- 검색창기능 -->
 
-      <!-- 카테고리 기능 -->
-      <form action="./FaqList.fa" method="post">
-        <p id="category_search">
-          <button onclick="location.href='/faq/faqList'" class="btn btn-secondary" style="color:black;"  >전체</button>
-          <button name="category" value="이용정책" class="btn btn-secondary" style="color:black;">이용정책</button>
-          <button name="category" value="구매" class="btn btn-secondary" style="color:black;">구매</button>
-          <button name="category" value="판매" class="btn btn-secondary" style="color:black;">판매</button>
-          <button name="category" value="신고" class="btn btn-secondary" style="color:black;">신고</button>
-          <button name="category" value="기타" class="btn btn-secondary" style="color:black;">기타</button>
-        </p>
+            <!-- 카테고리 기능 -->
+                <form action="./FaqList.fa" method="post">
+                  <p id="category_search">
+                    <button onclick="location.href='/faq/faqList'" class="btn btn-secondary" style="color:black;"  >전체</button>
+                    <button name="category" value="이용정책" class="btn btn-secondary" style="color:black;">이용정책</button>
+                    <button name="category" value="구매" class="btn btn-secondary" style="color:black;">구매</button>
+                    <button name="category" value="판매" class="btn btn-secondary" style="color:black;">판매</button>
+                    <button name="category" value="신고" class="btn btn-secondary" style="color:black;">신고</button>
+                    <button name="category" value="기타" class="btn btn-secondary" style="color:black;">기타</button>
+                  </p>
+                </form>
+              <!-- 카테고리 기능 -->
 
-      </form>
+              <table class="table" id="nttable">
+                <thead style="background-color: #F6F6F6;">
+                <tr>
+                  <th style="text-align: center;">NO.</th>
+                  <th style="text-align: center;">카테고리</th>
+                  <th style="text-align: center;">제목</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="dto : ${faqList}">
+                    <td width="30px;"  style="text-align: center;"><input type="hidden" name="faqId" th:text="${dto.faqId}" th:value="${dto.faqId }"></td>
+                    <td width="100px;"  style="text-align: center;" th:text="${dto.category}"></td>
+                    <td width="500px;" style="text-align: center;"><a th:href="@{/faq/readFaq(faqId=${dto.faqId})}" th:text="${dto.title}"></a></td>
+                  </tr>
+              </table>
+              <hr>
+              <!--페이징처리-->
+              <div class="container">
+                <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">
+                  <li class="page-item">
+                    <a class="page-link" th:href="@{/faq/faqList(page=1)}">
+                      <span aria-hidden="true">처음</span>
+                    </a>
+                  </li>
+                  <li class="page-item" th:each="page: ${#numbers.sequence(startPage, endPage)}">
+                    <a class="page-link" style="color: black;" th:text="${page}" th:href="@{/faq/faqList(page=${page})}">&nbsp;</a>
+                  </li>
+                  <li class="page-item">
+                    <a th:href="@{/faq/faqList(page=${faqList.totalPages})}" aria-label="Last">
+                      <span aria-hidden="true" class="page-link">마지막</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!--페이징처리-->
 
-
-      <!-- 카테고리 기능 -->
-
-      <table class="table" id="nttable">
-        <thead style="background-color: #F6F6F6;">
-        <tr>
-          <th style="text-align: center;">NO.</th>
-          <th style="text-align: center;">카테고리</th>
-          <th style="text-align: center;">제목</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr th:each="dto : ${faqList}">
-            <td width="30px;"  style="text-align: center;"><input type="hidden" name="faq_id" th:text="${dto.faq_id}" th:value="${dto.faq_id }"></td>
-            <td width="100px;"  style="text-align: center;" th:text="${dto.category}"></td>
-            <td width="500px;" style="text-align: center;"><a th:href="@{/faq/readFaq(faq_id=${dto.faq_id})}" th:text="${dto.title}"></a></td>
-          </tr>
-      </table>
-      <hr>
-<!--      페이징처리-->
-<!--      <div class="container">-->
-<!--        <ul class="pagination justify-content-center" id="pagination" style="margin-top: 70px;">-->
-<!--            <li th:if="${startPage > pageBlock}" class="page-item"><a class="page-link" a href="./FaqList.fa?pageNum=${startPage-pageBlock}&category=${category }&selecter=${selecter}&search=${search}"><sapn>이전</sapn></a></li>-->
-
-<!--          &lt;!&ndash; 페이지 순환 루프 &ndash;&gt;-->
-<!--          <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}">-->
-<!--            <a class="page-link" th:href="|/faq/faqList?pageNum=${i}&category=${category}&selecter=${selecter}&search=${search}|">-->
-<!--              <span th:text="${i}"></span>-->
-<!--            </a>-->
-<!--          </li>-->
-
-<!--            <li th:if="${endPage < pageCount }" class="page-item"><a class="page-link" th:href="|faqList?pageNum=${startPage+pageBlock}&category=${category }&selecter=${selecter}&search=${search}|"><span>다음</span></a></li>-->
-<!--        </ul>-->
-<!--      </div>-->
-<!--      <br>-->
-<!--      <div th:with="category=${category}, selector=${selector}, search=${search}, pageNum=${pageNum}">-->
-<!--페이징처리-->
-      <div style= "float: right;">
-
-        <!-- Faq 글쓰기는 관리자만 가능  -->
-          <button type="button" class="btn btn-primary" onclick="location.href='/faq/writeFaq'">글쓰기</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='/'">메인으로</button>
-      </div>
+                <div style= "float: right;">
+                  <!-- Faq 글쓰기는 관리자만 가능  -->
+                    <button type="button" class="btn btn-primary" onclick="location.href='/faq/writeFaq'">글쓰기</button>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='/'">메인으로</button>
+                </div>
     </div>
   </div>
 </div>
+
 <!--footer-->
 <div th:insert="/main/footer :: footer"></div>
 <!--footer-->
