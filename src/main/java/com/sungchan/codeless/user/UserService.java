@@ -28,7 +28,7 @@ public class UserService {
 
     //회원정보 수정
     public User modifyUser(User newUser) {
-        User user = userRepository.findById(newUser.getUser_id()).orElse(null);
+        User user = userRepository.findById(newUser.getUserId()).orElse(null);
 
         if(user == null) return null;
         return userRepository.save(newUser);

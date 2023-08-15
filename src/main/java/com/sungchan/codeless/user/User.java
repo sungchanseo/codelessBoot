@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter @Setter @ToString
@@ -16,18 +13,23 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    @Column(name = "user_id")
+    private Integer userId;
     private String id;
     private String password;
     private String name;
     private String nickname;
-    private String phone_number;
+    @Column(name = "phone_number")
+    private String phoneNumber;
     private String address;
-    private String user_image;
+    @Column(name = "user_image")
+    private String userImage;
     private Date regdate;
-    private String birth_date;
+    @Column(name = "birth_date")
+    private String birthDate;
     private Boolean blocked;
-    private Integer post_number;
+    @Column(name = "post_number")
+    private Integer postNumber;
     private String address2;
     private String email;
     private Boolean withdrawal;

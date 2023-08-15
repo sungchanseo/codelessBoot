@@ -22,6 +22,6 @@ public class QnaContoller {
     public String getList(Model model){
         List<Qna> list = qnaService.getList();
         model.addAttribute("qnaList", list);
-        return "/qna/qnaList";
+        return "adminQnaList";
     }
 }

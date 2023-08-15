@@ -29,11 +29,12 @@ public class NoticeController {
     public String getList(String category, String keyword, Model model, @PageableDefault(value = 8, sort = "noticeId", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Notice> list = null;
 
-        if(keyword == null) {
+        if (keyword == null) {
             list = noticeService.getListPaging(pageable);
-        }else {
-            if(category.equals("title")){ list = noticeService.getListSearchPagingByTitle(keyword, pageable);}
-            else list = noticeService.getListSearchPagingByContent(keyword, pageable);
+        } else {
+            if (category.equals("title")) {
+                list = noticeService.getListSearchPagingByTitle(keyword, pageable);
+            } else list = noticeService.getListSearchPagingByContent(keyword, pageable);
         }
 
         int nowPage = list.getPageable().getPageNumber() + 1; //현재 페이지
@@ -77,8 +78,17 @@ public class NoticeController {
     @PostMapping("/modifyNotice")
     public String modifyNotice(Notice newNotice) {
         Notice notice = noticeService.read(newNotice.getNoticeId());
-        if(notice == null) return "redirect:/notice/noticeList";
+        if (notice == null) return "redirect:/notice/noticeList";
         noticeService.modify(newNotice);
         return "redirect:/notice/noticeList";
+    }
+
+    @GetMapping("/companyInfo")
+    public void companyInfoGet(){
+
+    }
+    @GetMapping("/privacyPolicy")
+    public void privacyPolicyGet(){
+
     }
 }

@@ -103,10 +103,10 @@ style="  background-color: transparent !important;box-shadow: none !important;" 
         </li>
 
         <li class="nav-item" th:if="${#strings.isEmpty(id)}">
-          <a href="./MemberLogin.me" class="nav-link"><b>로그인</b></a>
+          <a th:href="@{/member/loginForm}" class="nav-link"><b>로그인</b></a>
         </li>
         <li class="nav-item" th:if="${#strings.isEmpty(id)}">
-          <a href="/member/insertForm" class="nav-link"><b>회원가입</b></a>
+          <a th:href="@{/member/insertForm}" class="nav-link"><b>회원가입</b></a>
         </li>
 
         <li class="nav-item" th:if="${not #strings.isEmpty(id)}">
